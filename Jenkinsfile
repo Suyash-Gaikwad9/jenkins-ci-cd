@@ -1,22 +1,24 @@
 pipeline {
     agent any
-
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/YOUR-USERNAME/jenkins-ci-cd-demo.git'
+                git url: 'git@github.com:Suyash-Gaikwad9/jenkins-ci-cd.git', credentialsId: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFi8a8x+4URl4mwwR3NY+VD4ELyHuzTjagdRHBYSnqQs suyash.gaikwad21@vit.edu'
             }
         }
-
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
-                sh 'docker build -t myapp:latest .'
+                echo 'Building the project...'
             }
         }
-
-        stage('Run Tests') {
+        stage('Test') {
             steps {
-                sh 'docker run --rm myapp:latest echo "Running tests..."'
+                echo 'Running tests...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
             }
         }
     }
